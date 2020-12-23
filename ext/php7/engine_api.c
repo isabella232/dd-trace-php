@@ -187,7 +187,7 @@ ZEND_RESULT_CODE ddtrace_read_property(zval *dest, zval *obj, const char *prop, 
         if (result) {
             zend_string_release(Z_STR(member));
             ZVAL_COPY(dest, result);
-            // zval_ptr_dtor(result);
+            zval_ptr_dtor(result);
             return SUCCESS;
         }
     }

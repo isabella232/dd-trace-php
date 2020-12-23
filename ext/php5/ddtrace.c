@@ -1092,6 +1092,15 @@ static PHP_FUNCTION(dd_trace_disable_in_request) {
     RETURN_BOOL(1);
 }
 
+static PHP_FUNCTION(dd_trace_enable_in_request) {
+    PHP5_UNUSED(return_value_used, this_ptr, return_value_ptr, ht);
+    PHP7_UNUSED(execute_data);
+
+    DDTRACE_G(disable_in_current_request) = 0;
+
+    RETURN_BOOL(1);
+}
+
 static PHP_FUNCTION(dd_trace_reset) {
     PHP5_UNUSED(return_value_used, this_ptr, return_value_ptr, ht);
     PHP7_UNUSED(execute_data);
@@ -1591,6 +1600,7 @@ static const zend_function_entry ddtrace_functions[] = {
     DDTRACE_FE(dd_trace_coms_trigger_writer_flush, arginfo_ddtrace_void),
     DDTRACE_FE(dd_trace_dd_get_memory_limit, arginfo_ddtrace_void),
     DDTRACE_FE(dd_trace_disable_in_request, arginfo_ddtrace_void),
+    DDTRACE_FE(dd_trace_enable_in_request, arginfo_ddtrace_void),
     DDTRACE_FE(dd_trace_env_config, arginfo_dd_trace_env_config),
     DDTRACE_FE(dd_trace_forward_call, arginfo_ddtrace_void),  // Noop legacy API
     DDTRACE_FALIAS(dd_trace_generate_id, dd_trace_push_span_id, arginfo_dd_trace_push_span_id),
